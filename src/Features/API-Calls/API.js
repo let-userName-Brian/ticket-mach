@@ -14,6 +14,5 @@ export const fetchAllTickets = async () => {
 
 export const putNewTicket = async (ticket) => {
   let ticketId = ticket.id;
-  console.log(ticketId)
   axios.put(`https://ticket-master-428d7-default-rtdb.firebaseio.com/tickets/${ticketId}.json`, ticket);
 };

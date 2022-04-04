@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Box, Typography, TextField } from '@mui/material';
 import uuid from 'react-uuid'
-import { putNewTicket } from '../API-Calls/API';
+import { fetchAllTickets, putNewTicket } from '../API-Calls/API';
 import Swal from 'sweetalert2'
 
 export default function Form() {
@@ -12,7 +12,9 @@ export default function Form() {
     plate: '',
     location: '',
     number: '',
-    message: ''
+    message: '',
+    date: new Date(),
+    vehicle: ''
   });
 
   const clearState = () => {
@@ -22,7 +24,9 @@ export default function Form() {
       plate: '',
       location: '',
       number: '',
-      message: ''
+      message: '',
+      date: new Date(),
+      vehicle: ''
     });
   }
 
@@ -35,7 +39,7 @@ export default function Form() {
     document.getElementById("ticket-form").reset();
     Swal.fire(
       'Got It!',
-      'Your ticket is being printed, please wait to be called forward!',
+      'Your ticket is being printed!',
       'success'
     );
     setTimeout(() => {
@@ -49,10 +53,11 @@ export default function Form() {
         <Typography variant='h4' sx={{ display: 'flex', justifyContent: 'center', alignContent: 'center' }}>Please Fill Out A Ticket</Typography>
         <TextField label="Full Name" onChange={e => setRegistration({ ...registration, name: e.target.value })} sx={{ marginBottom: '1rem', marginTop: '1rem' }} />
         <TextField label="License Plate Number" onChange={e => setRegistration({ ...registration, plate: e.target.value })} sx={{ marginBottom: '1rem' }} />
+        <TextField label="Vehicle Make/Model & Color" onChange={e => setRegistration({ ...registration, vehicle: e.target.value })} sx={{ marginBottom: '1rem' }} />
         <TextField label="Delivery Location (Bldg Number)" onChange={e => setRegistration({ ...registration, location: e.target.value })} sx={{ marginBottom: '1rem' }} />
         <TextField label="Phone number" onChange={e => setRegistration({ ...registration, number: e.target.value })} sx={{ marginBottom: '1rem' }} />
         <TextField label="Message" multiline rows={4} onChange={e => setRegistration({ ...registration, message: e.target.value })} sx={{ marginBottom: '1rem' }} />
-        <Button type='submit'>Submit</Button>
+        <Button type='submit'>Print Ticket</Button>
       </form>
     </Box>
   )
