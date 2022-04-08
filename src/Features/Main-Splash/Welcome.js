@@ -2,6 +2,9 @@ import React from 'react'
 import { Box, Typography } from '@mui/material'
 import SLDLOGO from '../Assets/SLD45.png'
 
+/**
+ * simply renders the welcome message and the logo
+ */
 export default function Welcome() {
   return (
     <Box style={{ float: 'left', height: '100%', backgroundColor: 'rgb(173, 237, 206)', width: '40vw' }}>

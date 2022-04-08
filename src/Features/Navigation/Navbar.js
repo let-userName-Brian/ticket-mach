@@ -15,5 +15,5 @@ export default function Navbar() {
           </Typography>
         </Toolbar>
       </AppBar>
-  )
-}
+  );
+};

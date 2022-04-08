@@ -17,6 +17,9 @@ export default function Form() {
     vehicle: ''
   });
 
+  /**
+   * used to ensure a proper reset of the state after the form is submitted
+   */
   const clearState = () => {
     setRegistration({
       id: '',
@@ -30,9 +33,15 @@ export default function Form() {
     });
   }
 
+  /**
+   * @param {submit} e 
+   * - Puts a new ticket in the DB based on the forms feilds.
+   * - Then clears the fields of the form. 
+   * - Then clears the apps state so no refresh is needed after 1/2 second.
+   * - Then alerts the user that the ticket has been added.
+   */
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(registration);
     putNewTicket({
       ...registration,
       id: uuid()
