@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Box, Typography, TextField } from '@mui/material';
 import uuid from 'react-uuid'
-import { fetchAllTickets, putNewTicket } from '../API-Calls/API';
+import { putNewTicket } from '../API-Calls/API';
 import Swal from 'sweetalert2'
 
 export default function Form() {
@@ -12,8 +12,8 @@ export default function Form() {
     plate: '',
     location: '',
     number: '',
-    message: '',
     date: new Date(),
+    day: new Date().getDay(),
     vehicle: ''
   });
 
@@ -24,14 +24,15 @@ export default function Form() {
       plate: '',
       location: '',
       number: '',
-      message: '',
       date: new Date(),
+      day: new Date().getDay(),
       vehicle: ''
     });
   }
 
   const onSubmit = (e) => {
     e.preventDefault();
+    console.log(registration);
     putNewTicket({
       ...registration,
       id: uuid()
@@ -56,7 +57,6 @@ export default function Form() {
         <TextField label="Vehicle Make/Model & Color" onChange={e => setRegistration({ ...registration, vehicle: e.target.value })} sx={{ marginBottom: '1rem' }} />
         <TextField label="Delivery Location (Bldg Number)" onChange={e => setRegistration({ ...registration, location: e.target.value })} sx={{ marginBottom: '1rem' }} />
         <TextField label="Phone number" onChange={e => setRegistration({ ...registration, number: e.target.value })} sx={{ marginBottom: '1rem' }} />
-        <TextField label="Message" multiline rows={4} onChange={e => setRegistration({ ...registration, message: e.target.value })} sx={{ marginBottom: '1rem' }} />
         <Button type='submit'>Print Ticket</Button>
       </form>
     </Box>
